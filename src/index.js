@@ -11,6 +11,7 @@ import GenerPage from "./components/GenerPage.jsx";
 // ********* Other components ***************
 import registerServiceWorker from "./registerServiceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/css/style.css";
 import reducers from "./reducers";
 
 const store = createStore(reducers);

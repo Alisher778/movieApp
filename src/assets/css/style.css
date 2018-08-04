@@ -1,0 +1,32 @@
+/* ====  MovieList  ===== */
+.carousel.slide {
+	margin: 40px 0;
+}
+.carousel-item.active img {
+	width: 100%;
+}
+.img-wrapper {
+	position: relative;
+}
+.avr-vote {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 2px 5px;
+	display: flex;
+	align-items: center;
+	color: #fff;
+}
+.avr-vote svg {
+	color: #ffc107;
+	margin-right: 3px;
+}
+.list-title i {
+	width: 3px;
+	height: 20px;
+	margin-right: 8px;
+	color: red;
+	display: inline-block;
+	background-color: rgb(16, 95, 152);
+}

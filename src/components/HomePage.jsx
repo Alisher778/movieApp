@@ -26,6 +26,9 @@ class HomePage extends Component {
 					<CarouselComponent />
 				</Container>
 				<Container>
+					<h3 className="list-title">
+						<i />Popular Movies
+					</h3>
 					<MovieList data={this.state.movies} />
 				</Container>
 			</section>
