@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar.jsx";
 import {
 	Collapse,
 	Navbar,
@@ -29,6 +30,7 @@ export default class NavbarComponent extends Component {
 		});
 	}
 	render() {
+		console.log(this.props);
 		return (
 			<div>
 				<Navbar color="info" dark expand="md">
@@ -38,6 +40,8 @@ export default class NavbarComponent extends Component {
 					<NavbarToggler onClick={this.toggle} />
 					<Collapse isOpen={this.state.isOpen} navbar>
 						<Nav className="ml-auto" navbar>
+							{window.location.pathname.includes("search") ? "" : <SearchBar />}
+
 							<NavItem>
 								<Link to="/movies" className="nav-link">
 									Movies

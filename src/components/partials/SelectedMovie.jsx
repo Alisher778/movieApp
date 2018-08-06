@@ -81,8 +81,7 @@ class SelectedMovie extends Component {
 										<b>Language:</b> {data.original_language}
 									</ListGroupItem>
 									<ListGroupItem>
-										<b>Votes</b>
-										{data.vote_count}
+										<b>Votes</b> {data.vote_count}
 									</ListGroupItem>
 									<ListGroupItem>
 										<b>Popularity:</b> {data.popularity}

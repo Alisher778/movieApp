@@ -1,3 +1,18 @@
+a:hover {
+	text-decoration: none;
+}
+a {
+	color: #000;
+}
+.search-link {
+	border-radius: 4px;
+	padding: 4px 10px;
+}
+.search-link:hover {
+	background-color: #f8f8f8;
+	border-radius: 4px;
+	padding: 4px 10px;
+}
 /* ====  MovieList  ===== */
 .carousel.slide {
 	margin: 40px 0;

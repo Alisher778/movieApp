@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 // *********** Components **********************
 import Navbar from "./components/partials/Navbar.jsx";
 import HomePage from "./components/HomePage.jsx";
+import SearchResultsPage from "./components/SearchResultsPage.jsx";
 import SelectedMovie from "./components/partials/SelectedMovie.jsx";
 
 // ********* Other components ***************
@@ -25,6 +26,7 @@ ReactDOM.render(
 				<Switch>
 					<Route exact path="/" component={HomePage} />
 					<Route exact path="/movies/:id" component={SelectedMovie} />
+					<Route exact path="/search/:query" component={SearchResultsPage} />
 					<Route component={HomePage} />
 				</Switch>
 			</div>
