@@ -17,7 +17,26 @@ a {
 .pagination {
 	justify-content: center;
 }
-
+.pagination-wrapper {
+	align-items: center;
+}
+.pagination-wrapper > div {
+	display: flex;
+	align-items: center;
+}
+.pagination-wrapper > div label {
+	width: 30%;
+}
+#page-number {
+	background-color: #e91e63;
+	color: #fff;
+	padding: 2px 20px 2px 5px;
+	font-size: 20px;
+}
+#current-page {
+	background-color: #4caf50;
+	font-size: 20px;
+}
 .slick-slide img {
 	margin: 0 auto;
 }

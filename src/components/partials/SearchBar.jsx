@@ -13,20 +13,18 @@ class SearchBar extends Component {
 	}
 	render() {
 		return (
-			<Form inline>
-				<FormGroup>
-					<Input
-						type="search"
-						name="search"
-						id="exampleSearch"
-						placeholder="search movies"
-						onChange={this.onSearchChange.bind(this)}
-					/>
-					<Link to={`/search/${this.state.query}`} className="btn btn-dark">
-						Search
-					</Link>
-				</FormGroup>
-			</Form>
+			<FormGroup className="d-flex">
+				<Input
+					type="search"
+					name="search"
+					id="exampleSearch"
+					placeholder="search movies"
+					onChange={this.onSearchChange.bind(this)}
+				/>
+				<Link to={`/search/${this.state.query}`} className="btn btn-dark">
+					Search
+				</Link>
+			</FormGroup>
 		);
 	}
 }

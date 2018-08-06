@@ -50,20 +50,11 @@ class CardComponent extends Component {
 										</span>
 									</div>
 									<CardBody>
-										{
-											<CardTitle className="text-center">
-												{item.title.length > 20
-													? item.title.substr(0, 20) + "..."
-													: item.title}
-											</CardTitle>
-											/*<CardText>{item.overview.substr(0, 120) + "..."}</CardText>
-									<p>
-										<strong>
-											<FaClock /> {item.release_date}
-										</strong>
-									</p>
-              */
-										}
+										<CardTitle className="text-center">
+											{item.title.length > 20
+												? item.title.substr(0, 20) + "..."
+												: item.title}
+										</CardTitle>
 									</CardBody>
 								</Card>
 							</Link>

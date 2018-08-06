@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {
+	Badge,
+	Button,
 	Container,
 	FormGroup,
 	Input,
+	Label,
 	ListGroup,
 	Media,
 	Pagination
@@ -15,7 +18,13 @@ import defaultImg from "../assets/img/default.png";
 class SearchResultsPage extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { query: "", movies: [], pages: 1, total_results: 1 };
+		this.state = {
+			query: "",
+			movies: [],
+			pages: 1,
+			total_results: 1,
+			pageNumber: 1
+		};
 	}
 
 	componentDidMount() {
@@ -48,24 +57,23 @@ class SearchResultsPage extends Component {
 			}`
 		)
 			.then(res => {
-				this.setState({ movies: res.data.results });
+				this.setState({
+					movies: res.data.results,
+					pages: res.data.total_pages,
+					total_results: res.data.total_results
+				});
 			})
 			.catch(err => this.setState({ msg: err }));
 	}
 
 	// ******** Pagination function ******************
-	changePage(e) {
+
+	goToPage(e) {
 		e.preventDefault();
-		const pageId = e.target.getAttribute("data-id");
-		var li = document.querySelectorAll(".page-item");
-		li.forEach(item => {
-			item.className = "page-item";
-		});
-		e.target.parentElement.className += " active";
 		axios(
 			`https://api.themoviedb.org/3/search/movie?api_key=c93f9215f2085cf5f8aa18a05afa9861&query=${
 				this.state.query
-			}&page=${pageId}`
+			}&page=${this.state.pageNumber}`
 		)
 			.then(res => {
 				this.setState({ movies: res.data.results });
@@ -73,24 +81,11 @@ class SearchResultsPage extends Component {
 			.catch(err => this.setState({ msg: err }));
 	}
 
-	// ******** Pagination Rendering ******************
-	loopPagination() {
-		let list = [];
-		for (let i = 1; i <= this.state.pages; i++) {
-			list.push(
-				<li className="page-item" key={i}>
-					<a
-						className="page-link"
-						href="#pageId"
-						data-id={i}
-						onClick={this.changePage.bind(this)}
-					>
-						{i}
-					</a>
-				</li>
-			);
+	// ******** Page Number Update ************
+	onInputChange(e) {
+		if (e.target.value != 0) {
+			this.setState({ pageNumber: e.target.value });
 		}
-		return list;
 	}
 	render() {
 		return (
@@ -104,12 +99,13 @@ class SearchResultsPage extends Component {
 							placeholder="search movies"
 							onChange={this.onSearchChange.bind(this)}
 						/>
-						<a
+						<Link
+							to={`/search/${this.state.query}`}
 							className="btn btn-dark text-light"
 							onClick={this.updateSearch.bind(this)}
 						>
 							Search Now
-						</a>
+						</Link>
 					</FormGroup>
 				</Container>
 				<Container className="my-5">
@@ -176,9 +172,28 @@ class SearchResultsPage extends Component {
 							);
 						})}
 					</ListGroup>
-					<Pagination aria-label="Page navigation example">
-						{this.loopPagination()}
-					</Pagination>
+					<div className="my-5 d-flex justify-content-center pagination-wrapper">
+						<b id="page-number" className="mr-auto">
+							{this.state.pages} Pages
+						</b>
+						<Badge color="success" id="current-page" pill className="mr-auto">
+							{this.state.pageNumber}
+						</Badge>
+						<FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+							<Label for="exampleEmail" className="mr-sm-2">
+								Page #
+							</Label>
+							<Input
+								type="number"
+								name="page"
+								id="exampleEmail"
+								placeholder="Page Number"
+								onChange={this.onInputChange.bind(this)}
+								onClick={() => (this.value = 0)}
+							/>
+						</FormGroup>
+						<Button onClick={this.goToPage.bind(this)}>Go</Button>
+					</div>
 				</Container>
 			</section>
 		);

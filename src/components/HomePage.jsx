@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container } from "reactstrap";
+import { Link } from "react-router-dom";
 import CarouselComponent from "./partials/Carousel";
 import MovieList from "./partials/MovieList";
 import axios from "axios";
@@ -29,6 +30,11 @@ class HomePage extends Component {
 						<i />Popular Movies
 					</h3>
 					<MovieList data={this.state.movies} />
+					<div className="text-center">
+						<Link to="/all-movies" className="btn btn-lg btn-primary my-5">
+							Load More
+						</Link>
+					</div>
 				</Container>
 			</section>
 		);

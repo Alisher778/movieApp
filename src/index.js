@@ -6,6 +6,7 @@ import persistState from "redux-localstorage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // *********** Components **********************
 import Navbar from "./components/partials/Navbar.jsx";
+import AllMoviesPage from "./components/AllMoviesPage.jsx";
 import HomePage from "./components/HomePage.jsx";
 import SearchResultsPage from "./components/SearchResultsPage.jsx";
 import SelectedMovie from "./components/partials/SelectedMovie.jsx";
@@ -25,6 +26,7 @@ ReactDOM.render(
 				<Navbar />
 				<Switch>
 					<Route exact path="/" component={HomePage} />
+					<Route exact path="/all-movies" component={AllMoviesPage} />
 					<Route exact path="/movies/:id" component={SelectedMovie} />
 					<Route exact path="/search/:query" component={SearchResultsPage} />
 					<Route component={HomePage} />

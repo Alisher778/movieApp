@@ -38,7 +38,12 @@ export default class NavbarComponent extends Component {
 					<NavbarToggler onClick={this.toggle} />
 					<Collapse isOpen={this.state.isOpen} navbar>
 						<Nav className="ml-auto" navbar>
-							{window.location.pathname.includes("search") ? "" : <SearchBar />}
+							{window.location.pathname.includes("search") &&
+							window.location.pathname.length > 8 ? (
+								""
+							) : (
+								<SearchBar />
+							)}
 
 							<NavItem>
 								<Link to="/movies" className="nav-link">
