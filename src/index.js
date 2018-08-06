@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 // *********** Components **********************
 import Navbar from "./components/partials/Navbar.jsx";
 import HomePage from "./components/HomePage.jsx";
-import GenerPage from "./components/GenerPage.jsx";
 import SelectedMovie from "./components/partials/SelectedMovie.jsx";
 
 // ********* Other components ***************
