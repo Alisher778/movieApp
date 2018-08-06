@@ -5,7 +5,6 @@ import {
 	Collapse,
 	Navbar,
 	NavbarToggler,
-	NavbarBrand,
 	Nav,
 	NavItem,
 	NavLink,
@@ -30,7 +29,6 @@ export default class NavbarComponent extends Component {
 		});
 	}
 	render() {
-		console.log(this.props);
 		return (
 			<div>
 				<Navbar color="info" dark expand="md">

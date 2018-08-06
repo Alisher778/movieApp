@@ -2,19 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-	Button,
 	Container,
 	FormGroup,
-	Form,
 	Input,
 	ListGroup,
-	ListGroupItem,
 	Media,
-	Pagination,
-	PaginationItem,
-	PaginationLink
+	Pagination
 } from "reactstrap";
 import axios from "axios";
+import defaultImg from "../assets/img/default.png";
 
 class SearchResultsPage extends Component {
 	constructor(props) {
@@ -29,7 +25,6 @@ class SearchResultsPage extends Component {
 			}`
 		)
 			.then(res => {
-				console.log(res.data);
 				this.setState({
 					movies: res.data.results,
 					pages: res.data.total_pages,
@@ -53,7 +48,6 @@ class SearchResultsPage extends Component {
 			}`
 		)
 			.then(res => {
-				console.log(res.data);
 				this.setState({ movies: res.data.results });
 			})
 			.catch(err => this.setState({ msg: err }));
@@ -67,7 +61,6 @@ class SearchResultsPage extends Component {
 		li.forEach(item => {
 			item.className = "page-item";
 		});
-		console.log(li);
 		e.target.parentElement.className += " active";
 		axios(
 			`https://api.themoviedb.org/3/search/movie?api_key=c93f9215f2085cf5f8aa18a05afa9861&query=${
@@ -75,7 +68,6 @@ class SearchResultsPage extends Component {
 			}&page=${pageId}`
 		)
 			.then(res => {
-				console.log(res.data);
 				this.setState({ movies: res.data.results });
 			})
 			.catch(err => this.setState({ msg: err }));
@@ -89,7 +81,7 @@ class SearchResultsPage extends Component {
 				<li className="page-item" key={i}>
 					<a
 						className="page-link"
-						href="#"
+						href="#pageId"
 						data-id={i}
 						onClick={this.changePage.bind(this)}
 					>
@@ -101,8 +93,6 @@ class SearchResultsPage extends Component {
 		return list;
 	}
 	render() {
-		console.log("State", this.state);
-
 		return (
 			<section>
 				<Container className="mt-5">
@@ -132,10 +122,12 @@ class SearchResultsPage extends Component {
 								"https://api.themoviedb.org/3/genre/movie/list?api_key=c93f9215f2085cf5f8aa18a05afa9861"
 							)
 								.then(res => {
-									item.genre_ids.map(itemGenId => {
-										res.data.genres.map(ids => {
-											if (ids.id == itemGenId) {
-												genresName.push(ids.name);
+									return item.genre_ids.map(itemGenId => {
+										return res.data.genres.map(ids => {
+											if (ids.id === itemGenId) {
+												return genresName.push(ids.name);
+											} else {
+												return [];
 											}
 										});
 									});
@@ -157,16 +149,20 @@ class SearchResultsPage extends Component {
 											<Media
 												width="100"
 												object
-												src={`https://image.tmdb.org/t/p/w200${
+												src={
 													item.poster_path
-												}`}
+														? `https://image.tmdb.org/t/p/w200${
+																item.poster_path
+														  }`
+														: defaultImg
+												}
 												alt={item.title}
 											/>
 										</Media>
 										<Media body className="ml-5">
 											<Media heading>{item.title}</Media>
 											<p className="font-weight-bold">
-												<span className="bg-warning text-dark px-2">
+												<span className="bg-warning text-dark p-1">
 													IMDb {item.vote_average}
 												</span>{" "}
 												| {item.release_date.slice(0, 4)}

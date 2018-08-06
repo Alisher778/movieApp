@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { Button, FormGroup, Form, Input } from "reactstrap";
+import { FormGroup, Form, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 
 class SearchBar extends Component {
@@ -13,7 +12,6 @@ class SearchBar extends Component {
 		this.setState({ query: e.target.value });
 	}
 	render() {
-		console.log(this.state.query);
 		return (
 			<Form inline>
 				<FormGroup>
@@ -23,7 +21,6 @@ class SearchBar extends Component {
 						id="exampleSearch"
 						placeholder="search movies"
 						onChange={this.onSearchChange.bind(this)}
-						inline
 					/>
 					<Link to={`/search/${this.state.query}`} className="btn btn-dark">
 						Search

@@ -13,6 +13,26 @@ a {
 	border-radius: 4px;
 	padding: 4px 10px;
 }
+
+.pagination {
+	justify-content: center;
+}
+
+.slick-slide img {
+	margin: 0 auto;
+}
+.slick-prev,
+.slick-next {
+	background-color: transparent;
+}
+.slick-prev:before,
+.slick-next:before {
+	color: #e91e63;
+	font-size: 40px;
+}
+h5.text-center.big.card-title {
+	font-size: 28px;
+}
 /* ====  MovieList  ===== */
 .carousel.slide {
 	margin: 40px 0;

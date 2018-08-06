@@ -19,10 +19,9 @@ class HomePage extends Component {
 	}
 
 	render() {
-		console.log(this.state.movies);
 		return (
 			<section>
-				<Container>
+				<Container className="my-5">
 					<CarouselComponent />
 				</Container>
 				<Container>

@@ -1,23 +1,7 @@
-import axios from "axios";
 const initialState = { title: "Hello" };
 
 const movie = (state = initialState, action) => {
 	const a = action.data;
-	// let genresName = [];
-	// // Fetch data to get genres id and map to store theirs names as genresName
-	// axios(
-	// 	"https://api.themoviedb.org/3/genre/movie/list?api_key=c93f9215f2085cf5f8aa18a05afa9861"
-	// )
-	// 	.then(res => {
-	// 		a.genre_ids.map(item => {
-	// 			res.data.genres.map(ids => {
-	// 				if (ids.id == item) {
-	// 					genresName.push(ids.name);
-	// 				}
-	// 			});
-	// 		});
-	// 	})
-	// 	.catch(err => console.log(err.message));
 
 	switch (action.type) {
 		case "SELECT_MOVIE":
@@ -38,10 +22,8 @@ const movie = (state = initialState, action) => {
 				vote_average: a.vote_average,
 				vote_count: a.vote_count
 			};
-			break;
 		default:
 			return state;
-			break;
 	}
 };
 

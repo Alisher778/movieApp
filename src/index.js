@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { compose, createStore } from "redux";
 import persistState from "redux-localstorage";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // *********** Components **********************
 import Navbar from "./components/partials/Navbar.jsx";
 import HomePage from "./components/HomePage.jsx";

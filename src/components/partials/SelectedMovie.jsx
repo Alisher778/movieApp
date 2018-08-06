@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FaClock, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import { connect } from "react-redux";
 import axios from "axios";
 import {
@@ -9,14 +9,12 @@ import {
 	CardText,
 	CardBody,
 	CardTitle,
-	CardSubtitle,
-	Button,
 	Col,
 	ListGroup,
 	ListGroupItem,
 	Row
 } from "reactstrap";
-import GenerList from "./SelectedMovieGenres.jsx";
+import defaultImg from "../../assets/img/default.png";
 
 class SelectedMovie extends Component {
 	constructor() {
@@ -33,24 +31,7 @@ class SelectedMovie extends Component {
 	}
 
 	render() {
-		// let genresName = [];
-		// // Fetch data to get genres id and map to store theirs names as genresName
-		// axios(
-		// 	"https://api.themoviedb.org/3/genre/movie/list?api_key=c93f9215f2085cf5f8aa18a05afa9861"
-		// )
-		// 	.then(res => {
-		// 		this.props.genre_ids.map(item => {
-		// 			res.data.genres.map(ids => {
-		// 				if (ids.id == item) {
-		// 					genresName.push(ids.name);
-		// 				}
-		// 			});
-		// 		});
-		// 	})
-		// 	.catch(err => console.log(err.message));
-
 		let data = this.props.selectedMovie;
-		console.log(data);
 		return (
 			<Container>
 				<Card>
@@ -60,7 +41,11 @@ class SelectedMovie extends Component {
 								<CardImg
 									top
 									width="100%"
-									src={`https://image.tmdb.org/t/p/w780${data.poster_path}`}
+									src={
+										data.poster_path
+											? `https://image.tmdb.org/t/p/w780${data.poster_path}`
+											: defaultImg
+									}
 									alt="Card image cap"
 								/>
 								<span className="avr-vote">
