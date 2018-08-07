@@ -122,6 +122,12 @@ h5.text-center.big.card-title {
 .slick-next {
 	z-index: 99;
 }
+
+/* ======   SIMILAR MOVIES ========= */
+#similar-movies-row .card-title {
+	font-size: 14px;
+	text-align: center;
+}
 @media screen and (max-width: 768px) {
 	.slick-slide img {
 		width: 100%;
