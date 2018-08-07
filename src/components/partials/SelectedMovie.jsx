@@ -14,7 +14,7 @@ import {
 	ListGroupItem,
 	Row
 } from "reactstrap";
-import defaultImg from "../../assets/img/default.png";
+import defaultImg from "../../assets/img/default-200.jpg";
 
 class SelectedMovie extends Component {
 	constructor() {
@@ -43,7 +43,7 @@ class SelectedMovie extends Component {
 									width="100%"
 									src={
 										data.poster_path
-											? `https://image.tmdb.org/t/p/w780${data.poster_path}`
+											? `https://image.tmdb.org/t/p/w300${data.poster_path}`
 											: defaultImg
 									}
 									alt="Card image cap"

@@ -13,7 +13,8 @@ import {
 	Pagination
 } from "reactstrap";
 import axios from "axios";
-import defaultImg from "../assets/img/default.png";
+import Spinner from "./partials/Spinner.jsx";
+import defaultImg from "../assets/img/default-200.jpg";
 
 class SearchResultsPage extends Component {
 	constructor(props) {
@@ -28,6 +29,7 @@ class SearchResultsPage extends Component {
 	}
 
 	componentDidMount() {
+		document.getElementById("spinner").style.display = "block";
 		axios(
 			`https://api.themoviedb.org/3/search/movie?api_key=c93f9215f2085cf5f8aa18a05afa9861&query=${
 				this.props.match.params.query
@@ -40,6 +42,7 @@ class SearchResultsPage extends Component {
 					total_results: res.data.total_results,
 					query: this.props.match.params.query
 				});
+				document.getElementById("spinner").style.display = "none";
 			})
 			.catch(err => this.setState({ msg: err }));
 	}
@@ -69,6 +72,7 @@ class SearchResultsPage extends Component {
 	// ******** Pagination function ******************
 
 	goToPage(e) {
+		document.getElementById("spinner").style.display = "block";
 		e.preventDefault();
 		axios(
 			`https://api.themoviedb.org/3/search/movie?api_key=c93f9215f2085cf5f8aa18a05afa9861&query=${
@@ -77,6 +81,7 @@ class SearchResultsPage extends Component {
 		)
 			.then(res => {
 				this.setState({ movies: res.data.results });
+				document.getElementById("spinner").style.display = "none";
 			})
 			.catch(err => this.setState({ msg: err }));
 	}
@@ -90,6 +95,7 @@ class SearchResultsPage extends Component {
 	render() {
 		return (
 			<section>
+				<Spinner />
 				<Container className="mt-5">
 					<FormGroup className="d-flex">
 						<Input
@@ -147,7 +153,7 @@ class SearchResultsPage extends Component {
 												object
 												src={
 													item.poster_path
-														? `https://image.tmdb.org/t/p/w200${
+														? `https://image.tmdb.org/t/p/w92${
 																item.poster_path
 														  }`
 														: defaultImg

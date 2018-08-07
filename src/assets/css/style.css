@@ -52,6 +52,37 @@ a {
 h5.text-center.big.card-title {
 	font-size: 28px;
 }
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+#spinner {
+	display: none;
+	position: fixed;
+	min-width: 100vw;
+	min-height: 100vw;
+	background: #0006;
+	z-index: 9999;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	color: #fff;
+	font-size: 60px;
+}
+#spinner > div {
+	width: 100%;
+	margin: calc((100vh - 60px) / 2) auto;
+	text-align: center;
+}
+#spinner svg {
+	animation: spin 2s infinite linear;
+}
 /* ====  MovieList  ===== */
 .carousel.slide {
 	margin: 40px 0;
@@ -83,4 +114,17 @@ h5.text-center.big.card-title {
 	color: red;
 	display: inline-block;
 	background-color: rgb(16, 95, 152);
+}
+.slick-prev,
+.slick-next {
+	z-index: 99;
+}
+@media screen and (max-width: 768px) {
+	.slick-slide img {
+		width: 100%;
+	}
+	.slick-prev,
+	.slick-next {
+		display: none !important;
+	}
 }

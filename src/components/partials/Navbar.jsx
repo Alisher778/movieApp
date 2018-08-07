@@ -46,7 +46,7 @@ export default class NavbarComponent extends Component {
 							)}
 
 							<NavItem>
-								<Link to="/movies" className="nav-link">
+								<Link to="/all-movies" className="nav-link">
 									Movies
 								</Link>
 							</NavItem>

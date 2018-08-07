@@ -39,7 +39,7 @@ class CardComponent extends Component {
 										<CardImg
 											top
 											width="100%"
-											src={`https://image.tmdb.org/t/p/w780${
+											src={`https://image.tmdb.org/t/p/w300${
 												item.backdrop_path
 											}?api_key=c93f9215f2085cf5f8aa18a05afa9861`}
 											alt="Card image cap"

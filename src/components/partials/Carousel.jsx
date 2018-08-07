@@ -49,6 +49,7 @@ class CarouselComponent extends React.Component {
 						}}
 					>
 						<img
+							className="md-w-100"
 							src={`https://image.tmdb.org/t/p/w780${item.backdrop_path}`}
 							alt={item.title}
 						/>

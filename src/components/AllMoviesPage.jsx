@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaSpinner } from "react-icons/fa";
 import {
 	Badge,
 	Card,
@@ -19,6 +19,7 @@ import {
 import { Link } from "react-router-dom";
 import defaultImg from "../assets/img/default-780.jpg";
 import axios from "axios";
+import Spinner from "./partials/Spinner.jsx";
 
 const url =
 	"https://api.themoviedb.org/3/movie/popular?api_key=c93f9215f2085cf5f8aa18a05afa9861";
@@ -30,20 +31,23 @@ class AllMoviesPage extends Component {
 	}
 
 	componentDidMount() {
+		document.getElementById("spinner").style.display = "block";
 		axios(url)
-			.then(res =>
+			.then(res => {
 				this.setState({
 					movies: res.data.results,
 					pages: res.data.total_pages,
 					total_results: res.data.total_results
-				})
-			)
+				});
+				document.getElementById("spinner").style.display = "none";
+			})
 			.catch(err => this.setState({ msg: err }));
 	}
 
 	// ******** Pagination function ******************
 
 	goToPage(e) {
+		document.getElementById("spinner").style.display = "block";
 		e.preventDefault();
 		axios(
 			`https://api.themoviedb.org/3/movie/popular?api_key=c93f9215f2085cf5f8aa18a05afa9861&page=${
@@ -52,6 +56,7 @@ class AllMoviesPage extends Component {
 		)
 			.then(res => {
 				this.setState({ movies: res.data.results });
+				document.getElementById("spinner").style.display = "none";
 			})
 			.catch(err => this.setState({ msg: err }));
 	}
@@ -66,6 +71,13 @@ class AllMoviesPage extends Component {
 		console.log(this.state);
 		return (
 			<Container>
+				<Spinner />
+				<h3 className="list-title my-5 d-flex align-items-center">
+					<i />Browse Popular Movies{" "}
+					<Badge color="success" id="current-page" pill className="ml-auto">
+						{this.state.total_results}
+					</Badge>
+				</h3>
 				<Row>
 					{this.state.movies.map((item, i) => {
 						let genresName = [];
@@ -124,10 +136,7 @@ class AllMoviesPage extends Component {
 						);
 					})}
 				</Row>
-				<div
-					inline
-					className="my-5 d-flex justify-content-center pagination-wrapper"
-				>
+				<div className="my-5 d-flex justify-content-center pagination-wrapper">
 					<b id="page-number" className="mr-auto">
 						{this.state.pages} Pages
 					</b>
@@ -145,6 +154,7 @@ class AllMoviesPage extends Component {
 							placeholder="Page Number"
 							onChange={this.onInputChange.bind(this)}
 							onClick={() => (this.value = 0)}
+							defaultValue={this.state.pageNumber}
 						/>
 					</FormGroup>
 					<Button onClick={this.goToPage.bind(this)}>Go</Button>
