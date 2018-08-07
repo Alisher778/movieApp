@@ -5,13 +5,17 @@ import { Link } from "react-router-dom";
 class SearchBar extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { query: "" };
+		this.state = { query: "", category: "movie" };
 	}
 
 	onSearchChange(e) {
 		this.setState({ query: e.target.value });
 	}
+	onCategoryChange(e) {
+		this.setState({ category: e.target.value });
+	}
 	render() {
+		console.log(this.state);
 		return (
 			<FormGroup className="d-flex">
 				<Input
@@ -21,7 +25,14 @@ class SearchBar extends Component {
 					placeholder="search movies"
 					onChange={this.onSearchChange.bind(this)}
 				/>
-				<Link to={`/search/${this.state.query}`} className="btn btn-dark">
+				<select onChange={this.onCategoryChange.bind(this)} className="category-select">
+					<option value="movie">Movie</option>
+					<option value="tv">Tv Show</option>
+				</select>
+				<Link
+					to={`/search/${this.state.category}/${this.state.query}`}
+					className="btn btn-dark"
+				>
 					Search
 				</Link>
 			</FormGroup>

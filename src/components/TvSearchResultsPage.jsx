@@ -32,7 +32,7 @@ class SearchResultsPage extends Component {
 	componentDidMount() {
 		document.getElementById("spinner").style.display = "block";
 		axios(
-			`https://api.themoviedb.org/3/search/movie?api_key=c93f9215f2085cf5f8aa18a05afa9861&query=${
+			`https://api.themoviedb.org/3/search/tv?api_key=c93f9215f2085cf5f8aa18a05afa9861&query=${
 				this.props.match.params.query
 			}`
 		)
@@ -60,9 +60,9 @@ class SearchResultsPage extends Component {
 	// ******** Search Update Function ******************
 	updateSearch() {
 		axios(
-			`https://api.themoviedb.org/3/search/movie?api_key=c93f9215f2085cf5f8aa18a05afa9861&query=${
-				this.state.query
-			}`
+			`https://api.themoviedb.org/3/search/${
+				this.state.category
+			}?api_key=c93f9215f2085cf5f8aa18a05afa9861&query=${this.state.query}`
 		)
 			.then(res => {
 				this.setState({
@@ -80,7 +80,9 @@ class SearchResultsPage extends Component {
 		document.getElementById("spinner").style.display = "block";
 		e.preventDefault();
 		axios(
-			`https://api.themoviedb.org/3/search/movie?api_key=c93f9215f2085cf5f8aa18a05afa9861&query=${
+			`https://api.themoviedb.org/3/search/${
+				this.state.category
+			}?api_key=c93f9215f2085cf5f8aa18a05afa9861&query=${
 				this.state.query
 			}&page=${this.state.pageNumber}`
 		)
@@ -98,6 +100,7 @@ class SearchResultsPage extends Component {
 		}
 	}
 	render() {
+		console.log(this.state);
 		return (
 			<section>
 				<Spinner />
@@ -128,13 +131,13 @@ class SearchResultsPage extends Component {
 					</FormGroup>
 				</Container>
 				<Container className="my-5">
-					<h2>Search Results</h2>
+					<h2>Tv Show Search Results</h2>
 					<ListGroup flush className="my-4">
 						{this.state.movies.map((item, i) => {
 							let genresName = [];
 							// Fetch data to get genres id and map to store theirs names as genresName
 							axios(
-								"https://api.themoviedb.org/3/genre/movie/list?api_key=c93f9215f2085cf5f8aa18a05afa9861"
+								"https://api.themoviedb.org/3/genre/tv/list?api_key=c93f9215f2085cf5f8aa18a05afa9861"
 							)
 								.then(res => {
 									return item.genre_ids.map(itemGenId => {
@@ -153,7 +156,7 @@ class SearchResultsPage extends Component {
 									className="text-dark border-bottom my-2 py-2 search-link"
 									disabled
 									tag="a"
-									to={`/movies/${item.id}`}
+									to={`/tv/${item.id}`}
 									key={i}
 									onClick={() => {
 										this.props.selectMovie(item, genresName);
@@ -171,16 +174,16 @@ class SearchResultsPage extends Component {
 														  }`
 														: defaultImg
 												}
-												alt={item.title}
+												alt={item.name}
 											/>
 										</Media>
 										<Media body className="ml-5">
-											<Media heading>{item.title}</Media>
+											<Media heading>{item.name}</Media>
 											<p className="font-weight-bold">
 												<span className="bg-warning text-dark p-1">
 													IMDb {item.vote_average}
 												</span>{" "}
-												| {item.release_date.slice(0, 4)}
+												| {item.first_air_date.slice(0, 4)}
 											</p>
 											{item.overview.length > 200
 												? item.overview.substr(0, 230) + "..."

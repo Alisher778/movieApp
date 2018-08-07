@@ -9,7 +9,10 @@ import Navbar from "./components/partials/Navbar.jsx";
 import AllMoviesPage from "./components/AllMoviesPage.jsx";
 import HomePage from "./components/HomePage.jsx";
 import SearchResultsPage from "./components/SearchResultsPage.jsx";
+import TvSearchResultsPage from "./components/TvSearchResultsPage.jsx";
 import SelectedMovie from "./components/partials/SelectedMovie.jsx";
+import SelectedTv from "./components/partials/SelectedTv.jsx";
+import TvShowsPage from "./components/TvShowsPage.jsx";
 
 // ********* Other components ***************
 import registerServiceWorker from "./registerServiceWorker";
@@ -27,8 +30,19 @@ ReactDOM.render(
 				<Switch>
 					<Route exact path="/" component={HomePage} />
 					<Route exact path="/all-movies" component={AllMoviesPage} />
+					<Route exact path="/tv-shows" component={TvShowsPage} />
 					<Route exact path="/movies/:id" component={SelectedMovie} />
-					<Route exact path="/search/:query" component={SearchResultsPage} />
+					<Route exact path="/tv/:id" component={SelectedTv} />
+					<Route
+						exact
+						path="/search/tv/:query/"
+						component={TvSearchResultsPage}
+					/>
+					<Route
+						exact
+						path="/search/movie/:query/"
+						component={SearchResultsPage}
+					/>
 					<Route component={HomePage} />
 				</Switch>
 			</div>

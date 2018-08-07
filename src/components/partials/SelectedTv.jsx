@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 import defaultImg from "../../assets/img/default-200.jpg";
 
-class SelectedMovie extends Component {
+class SelectedTv extends Component {
 	constructor() {
 		super();
 		this.state = { genres: [], selectedGenres: [] };
@@ -32,10 +32,11 @@ class SelectedMovie extends Component {
 
 	render() {
 		let data = this.props.selectedMovie;
+		console.log(data);
 		return (
 			<Container>
 				<h3 className="list-title my-5 d-flex align-items-center">
-					<i />Movie Deatils
+					<i />Tv Show Deatils
 				</h3>
 				<Card>
 					<Row>
@@ -95,4 +96,4 @@ const mapStateToProps = state => {
 		selectedMovie: state.selectedMovie
 	};
 };
-export default connect(mapStateToProps)(SelectedMovie);
+export default connect(mapStateToProps)(SelectedTv);

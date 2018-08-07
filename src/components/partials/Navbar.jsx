@@ -51,9 +51,9 @@ export default class NavbarComponent extends Component {
 								</Link>
 							</NavItem>
 							<NavItem>
-								<NavLink href="https://github.com/reactstrap/reactstrap">
-									GitHub
-								</NavLink>
+								<Link to="/tv-shows" className="nav-link">
+									Tv Shows
+								</Link>
 							</NavItem>
 							<UncontrolledDropdown nav inNavbar>
 								<DropdownToggle nav caret>
