@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar.jsx";
 import {
 	Collapse,
+	Container,
 	Navbar,
 	NavbarToggler,
 	Nav,
@@ -31,43 +32,33 @@ export default class NavbarComponent extends Component {
 	render() {
 		return (
 			<div>
-				<Navbar color="info" dark expand="md">
-					<Link to="/" className="navbar-brand">
-						reactstrap
-					</Link>
-					<NavbarToggler onClick={this.toggle} />
-					<Collapse isOpen={this.state.isOpen} navbar>
-						<Nav className="ml-auto" navbar>
+				<Navbar dark expand="md">
+					<Container>
+						<Link to="/" className="navbar-brand">
+							MUVESRCH
+						</Link>
+						<NavbarToggler onClick={this.toggle} />
+						<Collapse isOpen={this.state.isOpen} navbar>
+							<Nav className="ml-auto" navbar>
+								<NavItem>
+									<Link to="/all-movies" className="nav-link">
+										Movies
+									</Link>
+								</NavItem>
+								<NavItem>
+									<Link to="/tv-shows" className="nav-link">
+										Tv Shows
+									</Link>
+								</NavItem>
+							</Nav>
 							{window.location.pathname.includes("search") &&
 							window.location.pathname.length > 8 ? (
 								""
 							) : (
 								<SearchBar />
 							)}
-
-							<NavItem>
-								<Link to="/all-movies" className="nav-link">
-									Movies
-								</Link>
-							</NavItem>
-							<NavItem>
-								<Link to="/tv-shows" className="nav-link">
-									Tv Shows
-								</Link>
-							</NavItem>
-							<UncontrolledDropdown nav inNavbar>
-								<DropdownToggle nav caret>
-									Options
-								</DropdownToggle>
-								<DropdownMenu right>
-									<DropdownItem>Option 1</DropdownItem>
-									<DropdownItem>Option 2</DropdownItem>
-									<DropdownItem divider />
-									<DropdownItem>Reset</DropdownItem>
-								</DropdownMenu>
-							</UncontrolledDropdown>
-						</Nav>
-					</Collapse>
+						</Collapse>
+					</Container>
 				</Navbar>
 			</div>
 		);

@@ -6,8 +6,10 @@ import persistState from "redux-localstorage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // *********** Components **********************
 import Navbar from "./components/partials/Navbar.jsx";
+import Footer from "./components/partials/Footer.jsx";
 import AllMoviesPage from "./components/AllMoviesPage.jsx";
 import HomePage from "./components/HomePage.jsx";
+import ErrorPage from "./components/ErrorPage.jsx";
 import SearchResultsPage from "./components/SearchResultsPage.jsx";
 import TvSearchResultsPage from "./components/TvSearchResultsPage.jsx";
 import SelectedMovie from "./components/partials/SelectedMovie.jsx";
@@ -43,8 +45,9 @@ ReactDOM.render(
 						path="/search/movie/:query/"
 						component={SearchResultsPage}
 					/>
-					<Route component={HomePage} />
+					<Route component={ErrorPage} />
 				</Switch>
+				<Footer />
 			</div>
 		</Router>
 	</Provider>,

@@ -4,6 +4,17 @@ a:hover {
 a {
 	color: #000;
 }
+/* ====== Navbar Styling ====== */
+nav {
+	background-color: #006996 !important;
+}
+.navbar-dark .navbar-nav .nav-link {
+	color: #fff;
+}
+ul.ml-auto.navbar-nav {
+	margin-right: 120px;
+}
+
 .search-link {
 	border-radius: 4px;
 	padding: 4px 10px;
@@ -15,7 +26,7 @@ a {
 }
 .category-select {
 	margin-left: 10px;
-	margin-right: 40px;
+	margin-right: 20px;
 }
 .pagination {
 	justify-content: center;
@@ -124,9 +135,30 @@ h5.text-center.big.card-title {
 }
 
 /* ======   SIMILAR MOVIES ========= */
+#similar-movies-row {
+}
 #similar-movies-row .card-title {
 	font-size: 14px;
 	text-align: center;
+}
+
+/* ======   ErrorPage ========= */
+#error-page {
+	min-height: calc(100vh - 80px - 112px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+}
+#error-page h1 {
+	font-size: 70px;
+}
+#error-page a {
+	margin: 30px auto;
+}
+#sign-icon {
+	font-size: 70px;
 }
 @media screen and (max-width: 768px) {
 	.slick-slide img {

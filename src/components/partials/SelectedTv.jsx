@@ -146,9 +146,13 @@ class SelectedTv extends Component {
 											<CardImg
 												top
 												width="100%"
-												src={`https://image.tmdb.org/t/p/w92${
+												src={
 													item.poster_path
-												}?api_key=c93f9215f2085cf5f8aa18a05afa9861`}
+														? `https://image.tmdb.org/t/p/w92${
+																item.poster_path
+														  }?api_key=c93f9215f2085cf5f8aa18a05afa9861`
+														: defaultImg
+												}
 												alt={item.name}
 											/>
 											<CardTitle>{item.name.substr(0, 18)}</CardTitle>

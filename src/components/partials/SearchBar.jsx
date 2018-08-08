@@ -17,7 +17,7 @@ class SearchBar extends Component {
 	render() {
 		console.log(this.state);
 		return (
-			<FormGroup className="d-flex">
+			<FormGroup className="d-flex mb-0">
 				<Input
 					type="search"
 					name="search"
@@ -25,7 +25,10 @@ class SearchBar extends Component {
 					placeholder="search movies"
 					onChange={this.onSearchChange.bind(this)}
 				/>
-				<select onChange={this.onCategoryChange.bind(this)} className="category-select">
+				<select
+					onChange={this.onCategoryChange.bind(this)}
+					className="category-select"
+				>
 					<option value="movie">Movie</option>
 					<option value="tv">Tv Show</option>
 				</select>

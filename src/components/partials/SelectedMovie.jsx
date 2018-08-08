@@ -22,29 +22,42 @@ import defaultImg from "../../assets/img/default-200.jpg";
 import Spinner from "../partials/Spinner.jsx";
 import SimilarMovies from "./SimilarMovies.jsx";
 
+const apiKey = "?api_key=c93f9215f2085cf5f8aa18a05afa9861";
+
 class SelectedMovie extends Component {
 	constructor() {
 		super();
-		this.state = { genres: [], selectedGenres: [], similarMovies: [] };
+		this.state = {
+			genres: [],
+			selectedGenres: [],
+			similarMovies: [],
+			video: []
+		};
 	}
 
 	componentDidMount() {
 		document.getElementById("spinner").style.display = "block";
-		axios(
-			"https://api.themoviedb.org/3/genre/movie/list?api_key=c93f9215f2085cf5f8aa18a05afa9861&language=en-US"
-		)
-			.then(res => this.setState({ genres: res.data.genres }))
-			.catch(err => console.log(err.message));
-
-		// Get Similar Movies
 		const { id } = this.props.match.params;
-		const url = `https://api.themoviedb.org/3/movie/${id}/similar?api_key=c93f9215f2085cf5f8aa18a05afa9861`;
-		axios(url)
-			.then(res => {
-				this.setState({ similarMovies: res.data.results });
-				document.getElementById("spinner").style.display = "none";
-			})
-			.catch(err => console.log(err.message));
+		const genresUrl = `https://api.themoviedb.org/3/genre/movie/list${apiKey}`;
+		const similarUrl = `https://api.themoviedb.org/3/movie/${id}/similar${apiKey}`;
+		const videoUrl = `https://api.themoviedb.org/3/movie/${id}/videos${apiKey}`;
+
+		axios
+			.all([axios.get(genresUrl), axios.get(similarUrl), axios.get(videoUrl)])
+			.then(
+				axios.spread((genres, similarMovies, video) => {
+					this.setState({
+						genres: genres.data.genres,
+						similarMovies: similarMovies.data.results,
+						video: video.data.results
+					});
+					document.getElementById("spinner").style.display = "none";
+				})
+			)
+			.catch(err => {
+				this.props.history.push("path/to/push");
+				console.log(err);
+			});
 	}
 
 	// Update Similar Movies List
@@ -62,7 +75,6 @@ class SelectedMovie extends Component {
 	}
 
 	render() {
-		console.log(this.state);
 		let data = this.props.selectedMovie;
 		return (
 			<Container>
@@ -154,9 +166,13 @@ class SelectedMovie extends Component {
 											<CardImg
 												top
 												width="100%"
-												src={`https://image.tmdb.org/t/p/w92${
+												src={
 													item.poster_path
-												}?api_key=c93f9215f2085cf5f8aa18a05afa9861`}
+														? `https://image.tmdb.org/t/p/w92${
+																item.poster_path
+														  }?api_key=c93f9215f2085cf5f8aa18a05afa9861`
+														: defaultImg
+												}
 												alt={item.title || item.name}
 											/>
 											<CardTitle>
