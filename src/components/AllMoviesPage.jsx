@@ -27,17 +27,28 @@ const url =
 class AllMoviesPage extends Component {
 	constructor() {
 		super();
-		this.state = { movies: [], pages: 1, total_results: 10, pageNumber: 1 };
+		this.state = { movies: [], pages: 1, total_results: 10, pageNumber: 1, pagesCollection: [] };
 	}
 
 	componentDidMount() {
 		document.getElementById("spinner").style.display = "block";
 		axios(url)
 			.then(res => {
+				let pageCollector = [];
+				for(let i=0; i<res.data.total_pages; i++) {
+					pageCollector.push(i)
+				}
+				let pageNumArr = []
+				for(let i=0; i<Math.round(pageCollector.length / 6); i++) {
+					let k = pageCollector.splice(0, 6)
+					pageNumArr.push(k)
+				}
+
 				this.setState({
 					movies: res.data.results,
 					pages: res.data.total_pages,
-					total_results: res.data.total_results
+					total_results: res.data.total_results,
+					pagesCollection: pageNumArr
 				});
 				document.getElementById("spinner").style.display = "none";
 			})
